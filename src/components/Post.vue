@@ -32,7 +32,7 @@
   import { defineProps } from 'vue';
   import { Post } from '../types/types';
   
-  const props = defineProps<{
+defineProps<{
     post: Post;
   }>();
   </script>
