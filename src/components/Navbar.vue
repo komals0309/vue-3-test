@@ -1,24 +1,60 @@
 <template>
-  <div id="app">
-   <!--Main Navigation-->
+      <!-- Navbar -->
+  <nav
+  v-if="isAuthenticated"
+       id="main-navbar"
+       class="navbar topnav navbar-expand-lg navbar-light fixed-top"
+       >
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button
+              class="navbar-toggler"
+              type="button"
+              data-mdb-toggle="collapse"
+              data-mdb-target="#sidebarMenu"
+              aria-controls="sidebarMenu"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              >
+        <i class="fas fa-bars"></i>
+      </button>
 
+      <!-- Brand -->
+      <a class="navbar-brand" href="#">
+        <i class="bi bi-linkedin"></i> LinkedIn
+      </a>
 
-
-<!--Main Navigation-->
-
-<!--Main layout-->
-<main>
-<router-view/>
-</main>
-<!--Main layout-->
-  </div>
+      <!-- Right links -->
+      <ul class="navbar-nav ms-auto d-flex flex-row">
+        <!-- Avatar -->
+        <li class="nav-item">
+          <a
+             class="nav-link d-flex align-items-center"
+             >
+            <img
+                 src="https://play-lh.googleusercontent.com/_qUtBpMVsGY-CLPx2DreAENHAbr4KHwBGn2w_3jhGSzoRVFRKn0SXUaK0wXSU0SJ7A=w240-h480-rw"
+                 class="rounded-circle"
+                 height="22"
+                 alt=""
+                 loading="lazy"
+                 />
+          </a>
+        </li>
+        <li>
+          <button @click="logout" class="logout-btn" text="Logout"><i class="bi bi-box-arrow-right"></i></button>
+        </li>
+      </ul>
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-import { useAuthStore } from './stores/auth';
+import { useAuthStore } from '../stores/auth';
 import { useRouter } from 'vue-router';
-import FeedPage from './views/FeedPage.vue';
 
 const authStore = useAuthStore();
 const router = useRouter();
@@ -78,13 +114,7 @@ button {
   border: none;
   padding: 0.5em 1em;
   cursor: pointer;
-  border-radius: 4px;
 }
-
-button:hover {
-  background-color: #005582;
-}
-
 
 .sidebar {
     position: fixed;
@@ -124,5 +154,17 @@ button:hover {
   .topnav{}
   main{
     background-color: rgb(235 236 238) !important;
+  }
+  .bi-box-arrow-right{
+    color: red;
+  }
+  .logout-btn{
+    background-color: white;
+  }
+
+  .rounded-circle{
+    border-radius: 50% !important;
+    width: 100%;
+    height: 35px;
   }
 </style>

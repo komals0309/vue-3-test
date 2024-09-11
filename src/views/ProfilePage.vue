@@ -1,55 +1,40 @@
 <template>
-      <section class="h-100 gradient-custom-2">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center">
-      <div class="col col-lg-9 col-xl-8">
-        <div class="card">
-          <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:200px;">
-            <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
-                alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
-                style="width: 150px; z-index: 1">
+     
+  
+    <!--  -->
+    <div class="card">
+          <div class="rounded-top text-white d-flex flex-row profile-box">
+            <div class="profile-img">
+              <img src="https://play-lh.googleusercontent.com/_qUtBpMVsGY-CLPx2DreAENHAbr4KHwBGn2w_3jhGSzoRVFRKn0SXUaK0wXSU0SJ7A=w240-h480-rw"
+                alt="Generic placeholder image">
             </div>
-            <div class="ms-3" style="margin-top: 130px;">
+          </div>
+          <div class="user-name">
               <h5>{{ user?.name }}</h5>
               <p>Delhi</p>
-            </div>
-          </div>
-          <div class="p-4 text-black bg-body-tertiary">
-            <div class="d-flex justify-content-end text-center py-1 text-body">
-              <div class="px-3">
+           </div>
+          <div class="follow-box">
+            <div class="d-flex text-center text-body">
+              <div class="follo-box">
                 <p class="mb-1 h5">1026</p>
-                <p class="small text-muted mb-0">Followers</p>
+                <span class="small text-muted mb-0">Followers</span>
               </div>
-              <div>
+              <div class="follo-box">
                 <p class="mb-1 h5">478</p>
-                <p class="small text-muted mb-0">Following</p>
+                <span class="small text-muted mb-0">Following</span>
               </div>
             </div>
           </div>
-          <div class="card-body p-4 text-black">
-            <div class="mb-5  text-body">
-              <p class="lead fw-normal mb-1">About</p>
-              <div class="p-4 bg-body-tertiary">
-                <p class="font-italic mb-1">Software Developer</p>
-                <p class="font-italic mb-1">Lives in Delhi</p>
+          <div class="profile-about">           
+               <h4>About</h4>
+              <div class="bg-body-tertiary">
+                <p>Software Developer</p>
+                <p>Lives in Delhi</p>
               </div>
-            </div>
-            <div class="d-flex justify-content-between align-items-center mb-4 text-body">
-              <p class="lead fw-normal mb-0">Recent Posts</p>
-            </div>
-            <div class="row">
-                <p v-if="userPosts.length==0">
-                No Posts as of now.
-              </p>
-              <Post v-for="post in userPosts" :key="post.id" :post="post" />
-            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    <!--  -->
+ 
   </template>
   
   <script lang="ts" setup>
@@ -66,4 +51,93 @@
     return postStore.posts.filter(post => post.author === user?.name);
   });
   </script>
+  <style scoped>
+  .profile-img{
+    width: 140px;
+    height: 140px;
+    display: block;
+    text-align: center;
+    margin: auto;
+    position: absolute;
+    bottom: -70px;
+    left: 0px;
+    right: 0px;
+    border-radius: 100%;
+  }
+  .profile-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+  .profile-box{
+    background-color: #000; height:100px;
+    position: relative;
+  }
+  .user-name{
+    margin-top: 80px;
+    border-bottom: 1px solid #ddd;
+  }
+  .user-name h5{
+    font-size: 18px;
+    color: #000;
+    font-weight: 600;
+    margin-bottom: 0px;
+  }
+  .user-name p{
+    font-size: 14px;
+    color: #666;
+    padding-bottom: 0px;
+  }
+  .follow-box{
+    margin-top: 15px;
+  }
+  .follow-box .d-flex{   
+    justify-content: center;
+    gap: 10px;
+  }
+  .follo-box p{
+    font-size: 22px;
+    color: #000;
+    font-weight: 600;
+    margin-bottom: 0px;
+  }
+  .follo-box  span{
+    font-size: 12px;
+  }
+  .follo-box{
+    
+    background: #f4f4f4;
+    padding: 10px 15px;
+}
+
+  .follo-box:last-child{
+    border-right: 0px solid #ddd;
+
+  }
+  .profile-about{
+    margin-top: 15px;
+  }
+  .profile-about h4{
+    font-size: 18px;
+    text-align: start;
+    padding: 0px 0px 8px;
+    color: #000;
+    font-weight: 600;
+    border-bottom: 1px solid #ddd;
+    margin: 0px 20px 14px;
+  }
+  .profile-about .bg-body-tertiary{}
+  .profile-about .bg-body-tertiary p{
+    font-size: 14px;
+    padding-bottom: 5px;
+    margin: 0px 20px 5px;
+    text-align: start;
+    border-bottom: 1px solid #ededed;
+  }
+  .profile-about .bg-body-tertiary p:last-child{
+    border-bottom: 0px solid #ededed;
+  }
+
+</style>
   

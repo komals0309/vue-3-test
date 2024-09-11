@@ -1,20 +1,23 @@
 <template>
-    <section class="vh-100">
-        <div class="title">
-           <h2>
-            Login to your <span>
-                account
-            </span>
-           </h2> 
-        </div>
-  <div class="container-fluid h-custom mb-5">
-    <div class="row d-flex justify-content-center align-items-center h-100">
+    <section class="vh-100 login-sec">
+        
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center">
       <div class="col-md-9 col-lg-6 col-xl-5">
         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
         class="img-fluid" alt="Phone image">
       </div>
-      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <form @submit.prevent="submitLogin">
+      <div class="col-md-3 col-lg-6 col-xl-4 offset-xl-1">
+        <div class="login-box">
+              <div class="title">
+              <h2>
+                Login to your <span>
+                    account
+                </span>
+              </h2> 
+            </div>
+            <!--  -->
+            <form @submit.prevent="submitLogin">
           <!-- Email input -->
           <div data-mdb-input-init class="form-outline mb-4">
             <label class="form-label text-start" for="form3Example3">Phone Number</label>
@@ -34,6 +37,9 @@
           </div>
           <p v-if="error" class="error-message">{{ error }}</p>
         </form>
+            <!--  -->
+        </div>
+       
       </div>
     </div>
   </div>
@@ -120,15 +126,47 @@ height: 1px;
 background: #eee;
 }
 
+.login-sec{}
+
 @media (max-width: 450px) {
 .h-custom {
 height: 100%;
 }
 }
 .title h2{
-    font-size: 26px;
+  font-size: 20px;
     font-weight: 600;
-    margin-bottom: 70px;
+    margin-bottom: 20px;
+}
+.login-box{
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 29px 0px;
+    padding: 50px 25px;
+    border-radius: 16px;
+    background-color: #fff;
+}
+.login-box .form-label{
+  font-size: 14px;
+  color: #222;
+}
+.login-box .form-control{
+  height: 50px;
+  border: 1px solid #ddd;
+  box-shadow: none;
+  outline: none;
+  font-size: 14px;
+  color: #222;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.login-box button{
+  width: 100%;
+  height: 50px;
+}
+.login-sec{
+  padding-top: 80px;
 }
   </style>
   
