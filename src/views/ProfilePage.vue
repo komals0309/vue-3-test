@@ -41,7 +41,7 @@
   import { computed } from 'vue';
   import { useAuthStore } from '../stores/auth';
   import { usePostStore } from '../stores/post';
-  import Post from '../components/Post.vue';
+
   
   const authStore = useAuthStore();
   const postStore = usePostStore();
@@ -50,6 +50,7 @@
   const userPosts = computed(() => {
     return postStore.posts.filter(post => post.author === user?.name);
   });
+  console.log(userPosts)
   </script>
   <style scoped>
   .profile-img{

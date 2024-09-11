@@ -18,17 +18,12 @@
 import { computed } from 'vue';
 import { useAuthStore } from './stores/auth';
 import { useRouter } from 'vue-router';
-import FeedPage from './views/FeedPage.vue';
 
 const authStore = useAuthStore();
 const router = useRouter();
 
 const isAuthenticated = computed(() => !!authStore.user);
 
-const logout = () => {
-  authStore.logout();
-  router.push('/login'); // Redirect to the login page
-};
 
 // Automatically redirect to login page if not authenticated
 if (!isAuthenticated.value) {
