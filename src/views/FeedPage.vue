@@ -14,13 +14,13 @@
           </div>
           
           <!-- feed start -->
-            <div class="myfeed1">
+            <!-- <div class="myfeed1">
 
                 <div class="myfeed" v-if="posts.length === 0">
                   <p>No posts available. Start by creating a post!</p>
                 </div>
               <Post v-for="post in posts" :key="post.id" :post="post" />
-            </div>
+            </div> -->
         </div>
         <!-- feed end -->
       </div>   
@@ -36,15 +36,16 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
-import { usePostStore } from '../stores/post';
+// import { computed } from 'vue';
+// import { usePostStore } from '../stores/post';
 import Post from '../components/Post.vue';
 import ProfilePage from '../views/ProfilePage.vue';
 import CreatePostPage from '../views/CreatePostPage.vue';
 import Navbar from '../components/Navbar.vue';
 
-const postStore = usePostStore();
-const posts = computed(() => postStore.posts);
+// const postStore = usePostStore();
+// const posts = computed(() => postStore.posts);
+console.log("helllooo feed page")
 </script>
 
 <style scoped>

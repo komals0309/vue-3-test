@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 
 interface AuthState {
-  user: { phoneNumber: string; name: string } | null;
+  user: { email: string; phoneNumber?: string; name?: string } | null;
   otp: string;
 }
 
@@ -11,14 +11,9 @@ export const useAuthStore = defineStore('auth', {
     otp: '',
   }),
   actions: {
-    async login(phoneNumber: string, otp: string) {
-      // Simulate OTP validation
-      if (otp === '123456') { 
-        this.user = { phoneNumber, name: 'Komal Saini' }; 
-        localStorage.setItem('user', JSON.stringify(this.user));
-      } else {
-        throw new Error('Invalid OTP');
-      }
+    setUser(email: string) {
+      this.user = { email };
+      localStorage.setItem('user', JSON.stringify(this.user));
     },
     logout() {
       this.user = null;

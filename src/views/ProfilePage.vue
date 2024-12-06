@@ -1,144 +1,197 @@
 <template>
-     
-  
-    <!--  -->
-    <div class="card">
-          <div class="rounded-top text-white d-flex flex-row profile-box">
-            <div class="profile-img">
-              <img src="https://play-lh.googleusercontent.com/_qUtBpMVsGY-CLPx2DreAENHAbr4KHwBGn2w_3jhGSzoRVFRKn0SXUaK0wXSU0SJ7A=w240-h480-rw"
-                alt="Generic placeholder image">
+  <div class="container">
+    <div class="main-body">
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb" class="main-breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
+          <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+        </ol>
+      </nav>
+      <!-- /Breadcrumb -->
+
+      <div class="row gutters-sm">
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex flex-column align-items-center text-center">
+                <img
+                  src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                  alt="Admin"
+                  class="rounded-circle"
+                  width="150"
+                />
+                <div class="mt-3">
+                  <h4>{{ user?.name || "User" }}</h4>
+                  <p class="text-secondary mb-1">Full Stack Developer</p>
+                  <p class="text-muted font-size-sm">Delhi, India</p>
+                  <button class="btn btn-primary">Follow</button>
+                  <button class="btn btn-outline-primary">Message</button>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="user-name">
-              <h5>{{ user?.name }}</h5>
-              <p>Delhi</p>
-           </div>
-          <div class="follow-box">
-            <div class="d-flex text-center text-body">
-              <div class="follo-box">
-                <p class="mb-1 h5">1026</p>
-                <span class="small text-muted mb-0">Followers</span>
-              </div>
-              <div class="follo-box">
-                <p class="mb-1 h5">478</p>
-                <span class="small text-muted mb-0">Following</span>
-              </div>
-            </div>
-          </div>
-          <div class="profile-about">           
-               <h4>About</h4>
-              <div class="bg-body-tertiary">
-                <p>Software Developer</p>
-                <p>Lives in Delhi</p>
-              </div>
           </div>
         </div>
-    <!--  -->
- 
-  </template>
-  
-  <script lang="ts" setup>
-  import { computed } from 'vue';
-  import { useAuthStore } from '../stores/auth';
-  import { usePostStore } from '../stores/post';
+        <div class="col-md-8">
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Full Name</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  {{ user?.name || "Test User" }}
+                </div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Email</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  {{ user?.email || "Not Available" }}
+                </div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-sm-12">
+                  <a class="btn btn-info" href="javascript:void(0)">Edit</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
 
   
-  const authStore = useAuthStore();
-  const postStore = usePostStore();
-  const user = authStore.user;
-  
-  const userPosts = computed(() => {
-    return postStore.posts.filter(post => post.author === user?.name);
-  });
-  console.log(userPosts)
-  </script>
+<script lang="ts" setup>
+import { computed, onMounted } from 'vue';
+import { useAuthStore } from '../stores/auth';
+
+const authStore = useAuthStore();
+const user = computed(() => authStore.user);
+onMounted(() => {
+  authStore.loadUserFromStorage(); 
+});
+</script>
+
   <style scoped>
-  .profile-img{
-    width: 140px;
-    height: 140px;
-    display: block;
-    text-align: center;
-    margin: auto;
-    position: absolute;
-    bottom: -70px;
-    left: 0px;
-    right: 0px;
-    border-radius: 100%;
-  }
-  .profile-img img{
-    width: 100%;
-    height: 100%;
-    border-radius: 100%;
-    object-fit: cover;
-  }
-  .profile-box{
-    background-color: #000; height:100px;
-    position: relative;
-  }
-  .user-name{
-    margin-top: 80px;
-    border-bottom: 1px solid #ddd;
-  }
-  .user-name h5{
-    font-size: 18px;
-    color: #000;
-    font-weight: 600;
-    margin-bottom: 0px;
-  }
-  .user-name p{
-    font-size: 14px;
-    color: #666;
-    padding-bottom: 0px;
-  }
-  .follow-box{
-    margin-top: 15px;
-  }
-  .follow-box .d-flex{   
-    justify-content: center;
-    gap: 10px;
-  }
-  .follo-box p{
-    font-size: 22px;
-    color: #000;
-    font-weight: 600;
-    margin-bottom: 0px;
-  }
-  .follo-box  span{
-    font-size: 12px;
-  }
-  .follo-box{
-    
-    background: #f4f4f4;
-    padding: 10px 15px;
+body {
+    margin-top: 20px;
+    color: #1a202c;
+    text-align: left;
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
 }
 
-  .follo-box:last-child{
-    border-right: 0px solid #ddd;
+.main-body {
+    padding: 20px;
+}
 
-  }
-  .profile-about{
-    margin-top: 15px;
-  }
-  .profile-about h4{
-    font-size: 18px;
-    text-align: start;
-    padding: 0px 0px 8px;
-    color: #000;
-    font-weight: 600;
-    border-bottom: 1px solid #ddd;
-    margin: 0px 20px 14px;
-  }
-  .profile-about .bg-body-tertiary{}
-  .profile-about .bg-body-tertiary p{
-    font-size: 14px;
-    padding-bottom: 5px;
-    margin: 0px 20px 5px;
-    text-align: start;
-    border-bottom: 1px solid #ededed;
-  }
-  .profile-about .bg-body-tertiary p:last-child{
-    border-bottom: 0px solid #ededed;
-  }
+.card {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+    border: none;
+    border-radius: 10px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.gutters-sm {
+    margin-right: -10px;
+    margin-left: -10px;
+}
+
+.gutters-sm>.col, .gutters-sm>[class*=col-] {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.mb-3, .my-3 {
+    margin-bottom: 1.5rem !important;
+}
+
+.img-thumbnail {
+    border: none;
+    border-radius: 50%;
+    width: 150px;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+.text-secondary {
+    color: #718096 !important;
+}
+
+.progress {
+    background-color: #e9ecef;
+    border-radius: 5px;
+    height: 8px;
+}
+
+.progress-bar {
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+}
+
+.btn-outline-primary {
+    color: #007bff;
+    border: 1px solid #007bff;
+    padding: 10px 20px;
+    border-radius: 25px;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    color: #007bff;
+}
+
+h4, h6 {
+    margin-bottom: 10px;
+}
+
+.breadcrumb {
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.breadcrumb-item.active {
+    color: #6c757d;
+}
+
+.breadcrumb-item a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+    text-decoration: underline;
+}
 
 </style>
   
