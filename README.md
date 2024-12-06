@@ -1,6 +1,4 @@
-This project is built using Vue 3 with the Composition API. Follow the below steps:
-1. User Login: Users can log in with any phone number using the OTP "123456."
-2. Create Post: Users can create a post through the "Create Post" section, and it will be immediately reflected in their feed.
+This project is built using Vue 3 with the Composition API. Firebase and Playwright for test cases
 
 
 
